@@ -1,0 +1,15 @@
+{
+  "name": "activity_reporter",
+  "description": "Server CPU and memory activity reporting example using Beebotte.",
+  "version": "0.1",
+  "author": "Beebotte <bwehbi@beebotte.com>",
+  "homepage": "https://github.com/beebotte/server_activity_tracking",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beebotte/server_activity_tracking.git"
+  },
+  "dependencies": {
+    "beebotte": "*"
+  },
+  "license": "MIT"
+}
