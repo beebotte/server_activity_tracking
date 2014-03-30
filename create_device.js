@@ -1,5 +1,5 @@
 /**
- * This script creates a device for reporting CPU and memory activity
+ * This script creates a device for reporting CPU usage, memory usage and latency (round trip time to a server)
  *
  * This device SHOULD only be run once; additional excecutions will 
  * report a "Device Already Exists" error (code 1306). 
@@ -30,6 +30,11 @@ var sandbox_device =
       name: 'memory',
       description: 'Memory usage of the device',
       vtype: bbt.types.BBT_Memory, //Built in type for memory usage
+    },
+    {
+      name: 'latency',
+      description: 'Latency (round trip time)',
+      vtype: bbt.types.BBT_Number, //Number basic type
     }]
   }]
 };
