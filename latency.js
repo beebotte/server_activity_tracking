@@ -3,25 +3,25 @@ var bbt = require('beebotte');
 var ping = require('net-ping');
 
 var bclient = new bbt.Connector({
-  //API keys for your account
-    keyId: '502b09f9113252ba91d0fa24b2e69c1e',
-    secretKey: '88303a6fdc866caeea2fe3bf4746611d16dce93196973d77e2037887f8fc6197',
+    //API keys for your account
+    keyId: process.env.ACCESS_KEY,
+    secretKey: process.env.SECRET_KEY
 });
 
 var options = {
-        retries: 3,
-        timeout: 2000
+    retries: 3,
+    timeout: 2000
 };
 
 var session = ping.createSession (options);
 
 //Frequency of activity reporting in milliseconds
-var frequency = process.env.FREQUECY || (6 * 1000 /* 1 minute */);
+var frequency = process.env.FREQUECY || (60 * 1000 /* 1 minute */);
 // Device, service and resource names. Change them as suits you (they MUST correspond to an existing device in your account)
 var device_name = "sandbox";
 var service_name = "performance";
 var latency_resource = "latency";
-var server = process.env.SERVER || "54.221.205.80";
+var server = process.env.SERVER || "127.0.0.1";
 
 setInterval(function()
   {
