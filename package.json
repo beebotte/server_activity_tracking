@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "beebotte": "*",
-    "net-ping": "*"
+    "net-ping": "*",
+    "diskspace": "*"
   },
   "license": "MIT"
 }
