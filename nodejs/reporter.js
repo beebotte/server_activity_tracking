@@ -1,6 +1,6 @@
 /*
  * Example showing how to use Beebotte to monitor the CPU and memory usage of a server. 
- * You should have first created a corresponding device (see file create_device.js)
+ * You should have first created a corresponding channel (see file create_channel.js)
  * Works on any Linux platform.
  * Microsoft Windows is not (yet) supported.
  *
@@ -12,19 +12,17 @@ var fs = require('fs');
 var os = require('os');
 var bbt = require('beebotte');
 
-var bclient = new bbt.Connector(
-  {
-    //API keys for your account
-    keyId: process.env.ACCESS_KEY,
-    secretKey: process.env.SECRET_KEY
+var bclient = new bbt.Connector({
+  //API keys for your account
+  keyId: process.env.ACCESS_KEY,
+  secretKey: process.env.SECRET_KEY
 });
 
 //Frequency of activity reporting in milliseconds
-var frequency = process.env.FREQUECY || (60 * 1000 /* 1 minute */);
-// Device, service and resource names. Change them as suits you (they MUST correspond to an existing device in your account)
-var device_name = "sandbox2";
-var service_name = "performance";
-var cpu_resource = "CPU";
+var frequency = process.env.FREQUENCY || (60 * 1000 /* 1 minute */);
+// Channel and resource names. Change them as suits you (they MUST correspond to an existing channel in your account)
+var channel_name = "sandbox";
+var cpu_resource = "cpu";
 var mem_resource = "memory";
 
 var cpus = null;
@@ -92,11 +90,10 @@ setInterval(function()
       var new_cpus = os.cpus();
       var avg_cpu = getAvgCpu(cpus, new_cpus);
       //Write a record to the CPU resource
-      bclient.writeResource({
-        device: device_name,
-        service: service_name,
+      bclient.write({
+        channel: channel_name,
         resource: cpu_resource,
-        value: avg_cpu 
+        data: avg_cpu 
       }, function(err, res) {
         if(err) console.log(err);
       });
@@ -106,10 +103,9 @@ setInterval(function()
         if(err) return console.log(err);
         //Write a record to the memory resource
         bclient.writeResource({
-          device: device_name,
-          service: service_name,
+          channel: channel_name,
           resource: mem_resource,
-          value: data
+          data: data
         }, function(err, res) {
           if(err) console.log(err);
         });

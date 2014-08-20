@@ -1,27 +1,19 @@
-Rerver Activity Tracking
-========================
+Server Activity Monitoring
+==========================
 
-Periodically reports server CPU and memory usage to Beebotte platform.
+This is a demo code to chowcase how Beebotte API can be used for remote server activity monitoring.
 
-## Install Dependencies
+## Prerequisites
+This code uses the Beebotte API, you must have an account.
+You can register here: http://beebotte.com/register
 
-To install this packages's dependencies from npm, run:
+## Nodejs
 
-    npm install
+Check the nodejs folder
 
-## Run
+## Python
 
-Go to your account settings page and take your access and secret keys.
-
-### Create a Device
-
-In order to report data to Beebotte, you need to create a device. This operation needs to be excecuted just once.
-
-    ACCESS_KEY=your_access_key SECRET_KEY=your_secret_key node create_device.js
-
-### Start the Reporting
-
-    ACCESS_KEY=your_access_key SECRET_KEY=your_secret_key node reporter.js
+Check the python folder
 
 ## License
 Copyright 2013 - 2014 Beebotte.

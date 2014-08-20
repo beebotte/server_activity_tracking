@@ -17,9 +17,8 @@ var session = ping.createSession (options);
 
 //Frequency of activity reporting in milliseconds
 var frequency = process.env.FREQUECY || (60 * 1000 /* 1 minute */);
-// Device, service and resource names. Change them as suits you (they MUST correspond to an existing device in your account)
-var device_name = "sandbox";
-var service_name = "performance";
+// Channel and resource names. Change them as suits you (they MUST correspond to an existing channel in your account)
+var channel_name = "sandbox";
 var latency_resource = "latency";
 var server = process.env.SERVER || "127.0.0.1";
 
@@ -36,11 +35,10 @@ setInterval(function()
       } else {
         console.log (target + ": Alive alive (ms=" + ms + ")");
         //Write a record to the latency resource
-        bclient.writeResource({
-          device: device_name,
-          service: service_name,
+        bclient.write({
+          channel: channel_name,
           resource: latency_resource,
-          value: ms
+          data: ms
         }, function(err, res) {
           if(err) console.log(err);
         });

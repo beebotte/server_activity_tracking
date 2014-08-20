@@ -19,11 +19,10 @@ var bclient = new bbt.Connector({
 });
 
 //Frequency of activity reporting in milliseconds
-var frequency = process.env.FREQUECY || (60 * 1000 /* 1 minute */);
+var frequency = process.env.FREQUENCY || (60 * 1000 /* 1 minute */);
 var oldinfo = null;
-// Device, service and resource names. Change them as suits you (they MUST correspond to an existing device in your account)
-var device_name = "sandbox";
-var service_name = "network";
+// Channel name. Change it as suits you (they MUST correspond to an existing channel in your account)
+var channel_name = "ooosandbox";
 
 function netinfo(callback, ifs) {
   fs.readFile('/proc/net/dev', 'utf8', function (err, ninfo) {
@@ -71,11 +70,10 @@ setInterval(function()
       console.log(data);
       for( net in data ) {
         //Write a record to the latency resource
-        bclient.writeResource({
-          device: device_name,
-          service: service_name,
+        bclient.write({
+          channel: channel_name,
           resource: net,
-          value: data[net]
+          data: data[net]
         }, function(err, res) {
           if(err) console.log(err);
         });

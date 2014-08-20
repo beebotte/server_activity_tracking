@@ -12,35 +12,32 @@ var diskspace = require('diskspace');
 var bbt = require('beebotte');
 
 var bclient = new bbt.Connector({
-    //API keys for your account
-    keyId: process.env.ACCESS_KEY,
-    secretKey: process.env.SECRET_KEY
+  //API keys for your account
+  keyId: process.env.ACCESS_KEY,
+  secretKey: process.env.SECRET_KEY
 });
 
 //Frequency of activity reporting in milliseconds
-var frequency = process.env.FREQUECY || (60 * 1000 /* 1 minute */);
-// Device, service and resource names. Change them as suits you (they MUST correspond to an existing device in your account)
-var device_name = "sandbox";
-var service_name = "hd";
+var frequency = process.env.FREQUENCY || (60 * 1000 /* 1 minute */);
+// Channel name. Change it as suits you (it MUST correspond to an existing channel in your account)
+var channel_name = "sandbox";
 
 setInterval(function()
   {
     diskspace.check('/', function (total, free, status) {
-      bclient.writeResource({
-        device: device_name,
-        service: service_name,
-        resource: 'root',
-        value: { size: total, used: total - free }
+      bclient.write({
+        channel: channel_name,
+        resource: 'disk',
+        data: { size: total, used: total - free }
       }, function(err, res) {
         if(err) console.log(err);
       });
     });
     diskspace.check('/data', function (total, free, status) {
-      bclient.writeResource({
-        device: device_name,
-        service: service_name,
+      bclient.write({
+        channel: channel_name,
         resource: 'data',
-        value: { size: total, used: total - free }
+        data: { size: total, used: total - free }
       }, function(err, res) {
         if(err) console.log(err);
       });
