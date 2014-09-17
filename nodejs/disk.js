@@ -24,7 +24,7 @@ var channel_name = "sandbox";
 
 setInterval(function()
   {
-    diskspace.check('/', function (total, free, status) {
+    diskspace.check('/', function (err, total, free, status) {
       bclient.write({
         channel: channel_name,
         resource: 'disk',
@@ -33,7 +33,7 @@ setInterval(function()
         if(err) console.log(err);
       });
     });
-    diskspace.check('/data', function (total, free, status) {
+    diskspace.check('/data', function (err, total, free, status) {
       bclient.write({
         channel: channel_name,
         resource: 'data',
