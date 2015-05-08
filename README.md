@@ -16,6 +16,6 @@ Check the nodejs folder
 Check the python folder
 
 ## License
-Copyright 2013 - 2014 Beebotte.
+Copyright 2015 Beebotte.
 
 [The MIT License](http://opensource.org/licenses/MIT)
