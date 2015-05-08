@@ -21,6 +21,6 @@ Report CPU, Memory, Network and Kisk space usage:
     python server_activity.py
 
 ## License
-Copyright 2013 - 2014 Beebotte.
+Copyright 2015 Beebotte.
 
 [The MIT License](http://opensource.org/licenses/MIT)
