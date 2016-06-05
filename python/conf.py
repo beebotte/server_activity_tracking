@@ -4,7 +4,7 @@
 _accesskey    = 'YOUR_API_ACCESS_KEY'
 _secretkey    = 'YOUR_API_SECRET_KEY'
 
-_debug        = False # set to True to print debug messages
+_debug        = True # set to True to print debug messages
  
 _period       = 60 # send resource records every minute
  
