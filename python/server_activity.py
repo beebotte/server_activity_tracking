@@ -78,7 +78,7 @@ def run():
       cpu_stats = getCPUStats(cpu_times, last_cpu_times)
       try:
         cpu_resource.write(cpu_stats)
-      except Error as err:
+      except Exception as err:
         print "Error Writing"
         if debug:
           print err
@@ -106,7 +106,7 @@ def run():
         net_resource.write(net_stats)
       last_net_stats = netif
 
-    except Error as err:
+    except Exception as err:
       print "Error Writing"
       if debug:
         print err
