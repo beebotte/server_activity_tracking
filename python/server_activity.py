@@ -27,7 +27,7 @@ mem_resource  = Resource(bbt, 'sandbox', 'memory')
 disk_resource = Resource(bbt, 'sandbox', 'disk')
 net_resource  = Resource(bbt, 'sandbox', 'eth0')
 
-debug = False
+debug = conf._debug
 
 def printData(cpu_times, mem, disk, netif):
   if debug:
@@ -78,8 +78,10 @@ def run():
       cpu_stats = getCPUStats(cpu_times, last_cpu_times)
       try:
         cpu_resource.write(cpu_stats)
-      except:
+      except Error as err:
         print "Error Writing"
+        if debug:
+          print err
 
     last_cpu_times = cpu_times
 
@@ -104,8 +106,10 @@ def run():
         net_resource.write(net_stats)
       last_net_stats = netif
 
-    except:
-        print "Error Writing"
+    except Error as err:
+      print "Error Writing"
+      if debug:
+        print err
 
     #Sleep some time
     time.sleep(conf._period)
