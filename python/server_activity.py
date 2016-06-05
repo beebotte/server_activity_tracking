@@ -45,7 +45,7 @@ def getNetStats(new, last, ifname):
   return retval
 
 def getCPUStats(new, last):
-  tot = new.user - last.user + new.nice - last.nice + new.systemi \
+  tot = new.user - last.user + new.nice - last.nice + new.system \
         - last.system + new.idle - last.idle + new.irq - last.irq \
         + new.iowait - last.iowait + new.softirq - last.softirq \
         + new.steal - last.steal
