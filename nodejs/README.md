@@ -35,6 +35,6 @@ Report Disk space usage
 
 
 ## License
-Copyright 2015 Beebotte.
+Copyright 2017 Beebotte.
 
 [The MIT License](http://opensource.org/licenses/MIT)
